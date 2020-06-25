@@ -19,7 +19,7 @@ func init() {
 		Charset   = getEnv("DB_CHARSET", "utf8")
 		Collation = getEnv("DB_COLLATION", "utf8_general_ci")
 	)
-	mysqlConfig := fmt.Sprintf("%s:%s@(%s:%d)/%s?charset=%s&collation=%s&parseTime=True&loc=Local", Username, Password, Host, Port, Database, Charset, Collation)
+	mysqlConfig := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=%s&collation=%s&parseTime=True&loc=Local", Username, Password, Host, Port, Database, Charset, Collation)
 
 	var err error
 	Eloquent, err = gorm.Open("mysql", mysqlConfig)

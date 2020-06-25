@@ -10,6 +10,8 @@ func Configure(app *iris.Application) {
 
 	mvc.New(app.Party("/")).Handle(new(controllers.IndexController))
 
+	mvc.New(app).Handle(new(controllers.UsersController))
+
 	app.Get("/ping", func(ctx iris.Context) {
 		ctx.JSON(iris.Map{
 			"message": "pong",
@@ -20,6 +22,7 @@ func Configure(app *iris.Application) {
 }
 
 func GetTestHandler(ctx iris.Context) {
+
 	ctx.JSON(iris.Map{
 		"message": "test",
 	})
