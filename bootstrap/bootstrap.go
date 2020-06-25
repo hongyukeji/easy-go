@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"github.com/hongyukeji/easy-go/routes"
+	"github.com/hongyukeji/easy-go/utils"
 	"github.com/joho/godotenv"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/logger"
@@ -65,10 +66,9 @@ func NewApplication() *iris.Application {
 }
 
 func StartApplication(app *iris.Application) {
-	addr, err := app.ConfigurationReadOnly().GetOther()["AppAddr"].(string)
+	/*addr, err := app.ConfigurationReadOnly().GetOther()["AppAddr"].(string)
 	if err != true {
 		addr = ":8080"
-	}
-	app.Listen(addr)
+	}*/
+	app.Listen(utils.GetEnv("APP_ADDR", ":8080"))
 }
-

@@ -53,7 +53,6 @@ func (c *UsersController) PostUsers(ctx iris.Context) {
 		Username:  body.Data.Username,
 		Salt:      body.Data.Salt,
 		Password:  body.Data.Password,
-		Languages: body.Data.Languages,
 	}
 	if err := tx.Create(&user); err == nil {
 		ctx.Application().Logger().Fatalf("created one record failed: %s", err.Error)
@@ -63,11 +62,10 @@ func (c *UsersController) PostUsers(ctx iris.Context) {
 		})
 		return
 	}
-	ctx.JSON(
-		iris.Map{
-			"code": http.StatusOK,
-			"data": user.Serializer(),
-		})
+	ctx.JSON(iris.Map{
+		"code": http.StatusOK,
+		"data": user.Serializer(),
+	})
 }
 
 // 查看用户
@@ -157,7 +155,6 @@ type putParam struct {
 		Username  string `json:"username" form:"username"`
 		Password  string `json:"password" form:"password"`
 		Salt      string `json:"salt" form:"salt"`
-		Languages string `json:"languages" form:"languages"`
 	} `json:"data"`
 }
 

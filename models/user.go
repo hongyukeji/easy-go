@@ -16,7 +16,6 @@ type User struct {
 	Salt      string `gorm:"type:varchar(255)" json:"salt"`
 	Username  string `gorm:"type:varchar(32)" json:"username"`
 	Password  string `gorm:"type:varchar(200);column:password" json:"-"`
-	Languages string `gorm:"type:varchar(200);column:languages" json:"languages"`
 }
 
 func (u User) TableName() string {
@@ -30,7 +29,6 @@ type UserSerializer struct {
 	Salt      string    `json:"salt"`
 	Username  string    `json:"username"`
 	Password  string    `json:"-"`
-	Languages string    `json:"languages"`
 }
 
 func (self User) Serializer() UserSerializer {
@@ -40,7 +38,6 @@ func (self User) Serializer() UserSerializer {
 		UpdatedAt: self.UpdatedAt.Truncate(time.Second),
 		Salt:      self.Salt,
 		Password:  self.Password,
-		Languages: self.Languages,
 		Username:  self.Username,
 	}
 }
