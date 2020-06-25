@@ -55,7 +55,17 @@ func NewApplication() *iris.Application {
 
 	app.Configure(identity.Configure, routes.Configure)
 
-	app.Configure(iris.WithConfiguration(iris.YAML("./env.yml")))
+	app.Configure(iris.WithConfiguration(iris.Configuration{ // default configuration:
+		DisableStartupLog:                 false,
+		DisableInterruptHandler:           false,
+		DisablePathCorrection:             false,
+		EnablePathEscape:                  false,
+		FireMethodNotAllowed:              false,
+		DisableBodyConsumptionOnUnmarshal: false,
+		DisableAutoFireStatusCode:         false,
+		TimeFormat:                        "Mon, 02 Jan 2006 15:04:05 GMT",
+		Charset:                           "utf-8",
+	}))
 
 	err := godotenv.Load()
 	if err != nil {
